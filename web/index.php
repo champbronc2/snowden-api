@@ -38,7 +38,6 @@ $link = mysql_connect($cleardb_server,$cleardb_username,$cleardb_password);
 	mysql_query("SET COLLATION_CONNECTION = 'utf8_unicode_ci'");
 	
 	header("Access-Control-Allow-Origin: *");
-	header("Access-Control-Allow-Headers: *");
 
 if($_GET['type']=="users"){	
 	
