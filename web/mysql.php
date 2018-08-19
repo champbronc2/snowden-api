@@ -37,12 +37,12 @@ $username = "root";   // the username specified when setting-up the database
 $password = "";   // the password specified when setting-up the database
 $database = "snowden";   // the database name chosen when setting-up the database (unique)
 $tablename = "users"; //name of table to connect to
-
-$link = mysql_connect($hostname,$username,$password);
-		@mysql_select_db($database) or die( "Unable to select database!");
+*/
+$link = mysql_connect($cleardb_server,$cleardb_username,$cleardb_password);
+		@mysql_select_db($cleardb_db) or die( "Unable to select database!");
 		mysql_query("SET NAMES 'utf8'");
 	mysql_query("SET CHARACTER SET utf8");
 	mysql_query("SET COLLATION_CONNECTION = 'utf8_unicode_ci'");
-	*/
+	
     
 ?>
