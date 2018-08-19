@@ -156,7 +156,6 @@ if($_GET['type']=="users"){
               ->sync();
  
 			print_r($result);
-			echo($result);
 		$last = mysql_insert_id();
 		//fetch a specific record
 			$query="SELECT CONCAT('[', better_result, ']') AS best_result FROM
