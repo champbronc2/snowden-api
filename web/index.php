@@ -39,9 +39,9 @@ $password = "";   // the password specified when setting-up the database
 $database = "snowden";   // the database name chosen when setting-up the database (unique)
 $tablename = "users"; //name of table to connect to
 */
-echo($cleardb_server);
-echo($cleardb_username);
-echo($cleardb_password);
+echo($cleardb_server." ");
+echo($cleardb_username." ");
+echo($cleardb_password." ");
 echo($cleardb_db);
 /*
 $link = mysql_connect($cleardb_server,$cleardb_username,$cleardb_password);
