@@ -149,10 +149,10 @@ if($_GET['type']=="users"){
 		$query="INSERT INTO `messages`(`content`,`user_id`,`conversation_id`) VALUES ('".$content."','".$user_id."','".$conversation_id."')";
 		$go=mysql_query($query) or die(mysql_error());
 		
-		$result = $pubnub->try{publish()
-              ->channel("conversations:".$conversation_id."")
-              ->message($result)
-		->sync();} catch { echo "exception";}
+		//$result = $pubnub->try{publish()
+        //      ->channel("conversations:".$conversation_id."")
+        //      ->message($result)
+		//->sync();} catch { echo "exception";}
  
 			//print_r($result);	
 			
