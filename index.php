@@ -46,8 +46,8 @@ $link = mysql_connect($cleardb_server,$cleardb_username,$cleardb_password);
 	else {
 			echo "Please try back in five minutes...\n";
 	}
-	//require_once('src/autoloader.php');
-	//require_once('vendor/autoload.php');
+	require_once('src/autoloader.php');
+	require_once('vendor/autoload.php');
 
 if($_GET['type']=="users"){	
 	
