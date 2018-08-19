@@ -1,5 +1,6 @@
 {
   "require": {
-    "ext-mysql": "*"
+    "ext-mysql": "*",
+	"pubnub/pubnub": "~4.0.0"
   }
 }
