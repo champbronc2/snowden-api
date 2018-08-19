@@ -178,6 +178,7 @@ if($_GET['type']=="users"){
               ->sync();
  
 			print_r($result);
+			echo($result);
 	} else {
 		//GET logic
 		if (isset($_GET['id'])){
