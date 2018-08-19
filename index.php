@@ -137,7 +137,29 @@ if($_GET['type']=="users"){
 		$conversation_id = $data['conversation_id'];
 		$query="INSERT INTO `messages`(`content`,`user_id`,`conversation_id`) VALUES ('".$content."','".$user_id."','".$conversation_id."')";
 		$go=mysql_query($query) or die(mysql_error());
-		echo("record created");
+		$last = mysql_insert_id();
+		//fetch a specific record
+			$query="SELECT CONCAT('[', better_result, ']') AS best_result FROM
+	(
+	SELECT GROUP_CONCAT('{', my_json, '}' SEPARATOR ',') AS better_result FROM
+	(
+	  SELECT 
+		CONCAT
+		(
+		  '\"id\":'   , '\"', id   , '\"', ',' 
+		  '\"created\":', '\"', created, '\"', ','
+		  '\"content\":', '\"', content, '\"', ','
+		  '\"user_id\":', '\"', user_id, '\"', ','
+		  '\"conversation_id\":', '\"', conversation_id, '\"', ','
+		  '\"reported\":', '\"', reported, '\"'
+		) AS my_json
+	  FROM messages
+	  WHERE id = ".$last."
+	) AS more_json
+	) AS yet_more_json;";
+			$go=mysql_query($query) or die(mysql_error());
+			$result = mysql_result($go, 0);
+			echo($result);
 	} else {
 		//GET logic
 		if (isset($_GET['id'])){
@@ -201,7 +223,55 @@ if($_GET['type']=="users"){
 		$amount = $data['amount'];
 		$query="INSERT INTO `conversations`(`name`,`expiration_date`,`start_distribution`,`complete_distribution`,`user_id`,`recipient_id`,`amount`) VALUES ('".$name."','".$expiration_date."','".$start_distribution."','".$complete_distribution."','".$user_id."','".$recipient_id."','".$amount."')";
 		$go=mysql_query($query) or die(mysql_error());
-		echo("record created");
+		$last = mysql_insert_id();
+		//fetch a specific record
+			$query="SELECT CONCAT('[', better_result, '') AS best_result FROM
+	(
+	SELECT GROUP_CONCAT('{', my_json, ',\"messages\":' SEPARATOR ',') AS better_result FROM
+	(
+	  SELECT 
+		CONCAT
+		(
+		 '\"id\":'   , '\"', id   , '\"', ',' 
+		  '\"created\":', '\"', created, '\"', ','
+		  '\"status\":', '\"', status, '\"', ','
+		  '\"name\":', '\"', name, '\"', ','
+		  '\"expiration_date\":', '\"', expiration_date, '\"', ','
+		  '\"complete_distribution\":', '\"', complete_distribution, '\"', ','
+		  '\"user_id\":', '\"', user_id, '\"', ','
+		  '\"recipient_id\":', '\"', recipient_id, '\"', ','
+		  '\"amount\":', '\"', amount, '\"', ','
+		  '\"start_distribution\":', '\"', start_distribution, '\"'
+		) AS my_json
+	  FROM conversations
+	  WHERE id = ".$last."
+	) AS more_json
+	) AS yet_more_json;";
+			$go=mysql_query($query) or die(mysql_error());
+			$result = mysql_result($go, 0);
+			echo($result);
+			//fetch and append the messages from that conversation next
+	$query="SELECT CONCAT('[', better_result, ']}]') AS best_result FROM
+	(
+		SELECT GROUP_CONCAT('{', my_json, '}' SEPARATOR ',') AS better_result FROM
+	(
+	  SELECT 
+		CONCAT
+		(
+		'\"id\":'   , '\"', id   , '\"', ',' 
+		  '\"created\":', '\"', created, '\"', ','
+		  '\"content\":', '\"', content, '\"', ','
+		  '\"user_id\":', '\"', user_id, '\"', ','
+		  '\"conversation_id\":', '\"', conversation_id, '\"', ','
+		  '\"reported\":', '\"', reported, '\"'
+		) AS my_json
+	  FROM messages
+	  WHERE conversation_id = ".$last."
+	) AS more_json
+	) AS yet_more_json;";
+			$go=mysql_query($query) or die(mysql_error());
+			$result = mysql_result($go, 0);
+			echo($result);
 	} else {
 		//GET logic
 		if (isset($_GET['id'])){
@@ -290,7 +360,55 @@ if($_GET['type']=="users"){
 		$id = $data['id'];
 		$query="UPDATE `conversations` SET status = 'confirmed' WHERE id = ".$id."";
 		$go=mysql_query($query) or die(mysql_error());
-		echo("Conversation confirmed");
+		$last = mysql_insert_id();
+		//fetch a specific record
+			$query="SELECT CONCAT('[', better_result, '') AS best_result FROM
+	(
+	SELECT GROUP_CONCAT('{', my_json, ',\"messages\":' SEPARATOR ',') AS better_result FROM
+	(
+	  SELECT 
+		CONCAT
+		(
+		 '\"id\":'   , '\"', id   , '\"', ',' 
+		  '\"created\":', '\"', created, '\"', ','
+		  '\"status\":', '\"', status, '\"', ','
+		  '\"name\":', '\"', name, '\"', ','
+		  '\"expiration_date\":', '\"', expiration_date, '\"', ','
+		  '\"complete_distribution\":', '\"', complete_distribution, '\"', ','
+		  '\"user_id\":', '\"', user_id, '\"', ','
+		  '\"recipient_id\":', '\"', recipient_id, '\"', ','
+		  '\"amount\":', '\"', amount, '\"', ','
+		  '\"start_distribution\":', '\"', start_distribution, '\"'
+		) AS my_json
+	  FROM conversations
+	  WHERE id = ".$last."
+	) AS more_json
+	) AS yet_more_json;";
+			$go=mysql_query($query) or die(mysql_error());
+			$result = mysql_result($go, 0);
+			echo($result);
+			//fetch and append the messages from that conversation next
+	$query="SELECT CONCAT('[', better_result, ']}]') AS best_result FROM
+	(
+		SELECT GROUP_CONCAT('{', my_json, '}' SEPARATOR ',') AS better_result FROM
+	(
+	  SELECT 
+		CONCAT
+		(
+		'\"id\":'   , '\"', id   , '\"', ',' 
+		  '\"created\":', '\"', created, '\"', ','
+		  '\"content\":', '\"', content, '\"', ','
+		  '\"user_id\":', '\"', user_id, '\"', ','
+		  '\"conversation_id\":', '\"', conversation_id, '\"', ','
+		  '\"reported\":', '\"', reported, '\"'
+		) AS my_json
+	  FROM messages
+	  WHERE conversation_id = ".$last."
+	) AS more_json
+	) AS yet_more_json;";
+			$go=mysql_query($query) or die(mysql_error());
+			$result = mysql_result($go, 0);
+			echo($result);
 	} else {
 		//GET logic
 		echo ("this endpoint is for POST only");
