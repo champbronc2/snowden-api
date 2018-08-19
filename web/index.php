@@ -1,6 +1,4 @@
 <?PHP
-require_once('src/autoloader.php');
-require_once('vendor/autoload.php');‌
 $cleardb_url      = parse_url(getenv("CLEARDB_DATABASE_URL"));
 $cleardb_server   = $cleardb_url["host"];
 $cleardb_username = $cleardb_url["user"];
@@ -40,6 +38,8 @@ $link = mysql_connect($cleardb_server,$cleardb_username,$cleardb_password);
 	mysql_query("SET COLLATION_CONNECTION = 'utf8_unicode_ci'");
 	
 	header("Access-Control-Allow-Origin: *");
+	require_once('src/autoloader.php');
+require_once('vendor/autoload.php');‌
 
 if($_GET['type']=="users"){	
 	
