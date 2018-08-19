@@ -149,7 +149,12 @@ if($_GET['type']=="users"){
 		$query="INSERT INTO `messages`(`content`,`user_id`,`conversation_id`) VALUES ('".$content."','".$user_id."','".$conversation_id."')";
 		$go=mysql_query($query) or die(mysql_error());
 		
-			
+		$result = $pubnub->publish()
+              ->channel("conversations:".$conversation_id."")
+              ->message($result)
+              ->sync();
+ 
+			print_r($result);	
 			
 		$last = mysql_insert_id();
 		//fetch a specific record
