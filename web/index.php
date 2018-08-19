@@ -39,14 +39,15 @@ $link = mysql_connect($cleardb_server,$cleardb_username,$cleardb_password);
 	
 	header("Access-Control-Allow-Origin: *");
 	if (file_exists("src/autoloader.php")) {
-		require "src/autoloader.php";
-		require "vendor/autoload.php";
+		//require "src/autoloader.php";
+		//require "vendor/autoload.php";
+		echo "file exists";
 		}
 	else {
 			echo "Please try back in five minutes...\n";
 	}
 	//require_once('src/autoloader.php');
-	require_once('vendor/autoload.php');
+	//require_once('vendor/autoload.php');
 
 if($_GET['type']=="users"){	
 	
