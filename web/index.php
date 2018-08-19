@@ -248,8 +248,21 @@ if($_GET['type']=="users"){
 			echo($result);
 		}
 	}
+}  else if($_GET['type']=="confirmconversation"){
+	//this is used to confirm a conversation
+		$data = json_decode(file_get_contents('php://input'), true);
+	//if post
+	if($data!=""){
+		//POST logic
+		$id = $data['id'];
+		$query="UPDATE `conversations` SET status = 'confirmed' WHERE id = ".$id."";
+		$go=mysql_query($query) or die(mysql_error());
+		echo("Conversation confirmed");
+	} else {
+		//GET logic
+		echo ("this endpoint is for POST only");
 } else {
-	echo("Please specify a type of users messages or conversations");
+	echo("Please specify a type of users, messages, confirmconversation or conversations");
 }
 
 ?>
