@@ -41,7 +41,7 @@ $link = mysql_connect($cleardb_server,$cleardb_username,$cleardb_password);
 	if (file_exists("src/autoloader.php")) {
 		//require "src/autoloader.php";
 		//require "vendor/autoload.php";
-		echo "file exists";
+		//echo "file exists";
 		}
 	else {
 			echo "Please try back in five minutes...\n";
