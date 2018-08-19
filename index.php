@@ -50,6 +50,16 @@ $link = mysql_connect($cleardb_server,$cleardb_username,$cleardb_password);
 	}
 	require_once('src/autoloader.php');
 	require_once('vendor/autoload.php');
+	use PubNub\PNConfiguration;
+	use PubNub\PubNub;
+	 
+	$pnConfiguration = new PNConfiguration();
+	 
+	$pnConfiguration->setSubscribeKey("sub-c-9a2966f0-a3cf-11e8-bb88-163ac01f2f4e");
+	$pnConfiguration->setPublishKey("pub-c-121bd49e-d8bc-4ca0-8a70-e86e447118e5");
+	$pnConfiguration->setSecure(false);
+ 
+$pubnub = new PubNub($pnConfiguration);
 
 if($_GET['type']=="users"){	
 	
@@ -226,9 +236,9 @@ if($_GET['type']=="users"){
 		$go=mysql_query($query) or die(mysql_error());
 		$last = mysql_insert_id();
 		//fetch a specific record
-			$query="SELECT CONCAT('[', better_result, '') AS best_result FROM
+			$query="SELECT CONCAT('[', better_result, ']') AS best_result FROM
 	(
-	SELECT GROUP_CONCAT('{', my_json, ',\"messages\":' SEPARATOR ',') AS better_result FROM
+	SELECT GROUP_CONCAT('{', my_json, '}' SEPARATOR ',') AS better_result FROM
 	(
 	  SELECT 
 		CONCAT
@@ -246,28 +256,6 @@ if($_GET['type']=="users"){
 		) AS my_json
 	  FROM conversations
 	  WHERE id = ".$last."
-	) AS more_json
-	) AS yet_more_json;";
-			$go=mysql_query($query) or die(mysql_error());
-			$result = mysql_result($go, 0);
-			echo($result);
-			//fetch and append the messages from that conversation next
-	$query="SELECT CONCAT('[', better_result, ']}]') AS best_result FROM
-	(
-		SELECT GROUP_CONCAT('{', my_json, '}' SEPARATOR ',') AS better_result FROM
-	(
-	  SELECT 
-		CONCAT
-		(
-		'\"id\":'   , '\"', id   , '\"', ',' 
-		  '\"created\":', '\"', created, '\"', ','
-		  '\"content\":', '\"', content, '\"', ','
-		  '\"user_id\":', '\"', user_id, '\"', ','
-		  '\"conversation_id\":', '\"', conversation_id, '\"', ','
-		  '\"reported\":', '\"', reported, '\"'
-		) AS my_json
-	  FROM messages
-	  WHERE conversation_id = ".$last."
 	) AS more_json
 	) AS yet_more_json;";
 			$go=mysql_query($query) or die(mysql_error());
