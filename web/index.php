@@ -36,6 +36,8 @@ $link = mysql_connect($cleardb_server,$cleardb_username,$cleardb_password);
 		mysql_query("SET NAMES 'utf8'");
 	mysql_query("SET CHARACTER SET utf8");
 	mysql_query("SET COLLATION_CONNECTION = 'utf8_unicode_ci'");
+	
+	header("Access-Control-Allow-Origin: *");
 
 if($_GET['type']=="users"){	
 	
