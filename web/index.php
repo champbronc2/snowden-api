@@ -261,6 +261,7 @@ if($_GET['type']=="users"){
 	} else {
 		//GET logic
 		echo ("this endpoint is for POST only");
+	}
 } else {
 	echo("Please specify a type of users, messages, confirmconversation or conversations");
 }
