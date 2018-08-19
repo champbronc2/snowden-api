@@ -38,8 +38,15 @@ $link = mysql_connect($cleardb_server,$cleardb_username,$cleardb_password);
 	mysql_query("SET COLLATION_CONNECTION = 'utf8_unicode_ci'");
 	
 	header("Access-Control-Allow-Origin: *");
-	require('src/autoloader.php');
-	require('vendor/autoload.php');
+	if (file_exists("src/autoloader.php")) {
+		require "src/autoloader.php";
+		require "vendor/autoload.php";
+		}
+	else {
+			echo "Please try back in five minutes...\n";
+	}
+	//require_once('src/autoloader.php');
+	require_once('vendor/autoload.php');
 
 if($_GET['type']=="users"){	
 	
