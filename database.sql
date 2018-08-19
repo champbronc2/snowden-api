@@ -10,12 +10,12 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
--- Dumping database structure for snowden
-CREATE DATABASE IF NOT EXISTS `snowden` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `snowden`;
+-- Dumping database structure for heroku_ca40f00dbf8b502
+CREATE DATABASE IF NOT EXISTS `heroku_ca40f00dbf8b502` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `heroku_ca40f00dbf8b502`;
 
 
--- Dumping structure for table snowden.conversations
+-- Dumping structure for table heroku_ca40f00dbf8b502.conversations
 CREATE TABLE IF NOT EXISTS `conversations` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -32,12 +32,12 @@ CREATE TABLE IF NOT EXISTS `conversations` (
   KEY `FK_conversations_recipient_id` (`recipient_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
--- Dumping data for table snowden.conversations: ~0 rows (approximately)
+-- Dumping data for table heroku_ca40f00dbf8b502.conversations: ~0 rows (approximately)
 /*!40000 ALTER TABLE `conversations` DISABLE KEYS */;
 /*!40000 ALTER TABLE `conversations` ENABLE KEYS */;
 
 
--- Dumping structure for table snowden.messages
+-- Dumping structure for table heroku_ca40f00dbf8b502.messages
 CREATE TABLE IF NOT EXISTS `messages` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -50,12 +50,12 @@ CREATE TABLE IF NOT EXISTS `messages` (
   KEY `FK_messages_conversations` (`conversation_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
--- Dumping data for table snowden.messages: ~3 rows (approximately)
+-- Dumping data for table heroku_ca40f00dbf8b502.messages: ~3 rows (approximately)
 /*!40000 ALTER TABLE `messages` DISABLE KEYS */;
 /*!40000 ALTER TABLE `messages` ENABLE KEYS */;
 
 
--- Dumping structure for table snowden.users
+-- Dumping structure for table heroku_ca40f00dbf8b502.users
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(200) NOT NULL DEFAULT '""',
@@ -64,7 +64,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
--- Dumping data for table snowden.users: ~3 rows (approximately)
+-- Dumping data for table heroku_ca40f00dbf8b502.users: ~3 rows (approximately)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
