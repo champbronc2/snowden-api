@@ -150,12 +150,7 @@ if($_GET['type']=="users"){
 		$go=mysql_query($query) or die(mysql_error());
 		
 			
-			$result = $pubnub->publish()
-              ->channel("conversations:".$conversation_id."")
-              ->message($result)
-              ->sync();
- 
-			print_r($result);
+			
 		$last = mysql_insert_id();
 		//fetch a specific record
 			$query="SELECT CONCAT('[', better_result, ']') AS best_result FROM
