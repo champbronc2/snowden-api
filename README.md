@@ -1,7 +1,7 @@
 # snowden-api
 Endpoint: https://snowden-api.herokuapp.com/web/index.php?type=[must specify either users, messages, or conversations]
 GET requests return all records by default, unless you specify &id=[id]
-For example, https://snowden-api.herokuapp.com/web/index.php?type=conversations&id=11 will return the details of conversation 11, as well as all messages from that conversation
+For example, https://snowden-api.herokuapp.com/web/index.php?type=conversations&id=91 will return the details of conversation 11, as well as all messages from that conversation
 
 Creating a new user:
 POST https://snowden-api.herokuapp.com/web/index.php?type=users payload
