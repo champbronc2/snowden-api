@@ -39,11 +39,7 @@ $password = "";   // the password specified when setting-up the database
 $database = "snowden";   // the database name chosen when setting-up the database (unique)
 $tablename = "users"; //name of table to connect to
 */
-echo($cleardb_server." ");
-echo($cleardb_username." ");
-echo($cleardb_password." ");
-echo($cleardb_db);
-/*
+error_reporting(1);
 $link = mysql_connect($cleardb_server,$cleardb_username,$cleardb_password);
 		@mysql_select_db($cleardb_db) or die( "Unable to select database!");
 		mysql_query("SET NAMES 'utf8'");
@@ -106,5 +102,5 @@ SELECT GROUP_CONCAT('{', my_json, '}' SEPARATOR ',') AS better_result FROM
 		echo($result);
 	}
 }
-*/
+
 ?>
