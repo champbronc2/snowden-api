@@ -171,6 +171,13 @@ if($_GET['type']=="users"){
 			$go=mysql_query($query) or die(mysql_error());
 			$result = mysql_result($go, 0);
 			echo($result);
+			
+			$result = $pubnub->publish()
+              ->channel("conversations:".$conversation_id."")
+              ->message($result)
+              ->sync();
+ 
+			print_r($result);
 	} else {
 		//GET logic
 		if (isset($_GET['id'])){
