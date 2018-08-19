@@ -36,6 +36,7 @@ $link = mysql_connect($cleardb_server,$cleardb_username,$cleardb_password);
 		mysql_query("SET NAMES 'utf8'");
 	mysql_query("SET CHARACTER SET utf8");
 	mysql_query("SET COLLATION_CONNECTION = 'utf8_unicode_ci'");
+	mysql_query("SET SESSION group_concat_max_len=1000000");
 	
 	header("Access-Control-Allow-Origin: *");
 	header("Access-Control-Allow-Headers: *");
