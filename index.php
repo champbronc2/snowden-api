@@ -148,6 +148,15 @@ if($_GET['type']=="users"){
 		$conversation_id = $data['conversation_id'];
 		$query="INSERT INTO `messages`(`content`,`user_id`,`conversation_id`) VALUES ('".$content."','".$user_id."','".$conversation_id."')";
 		$go=mysql_query($query) or die(mysql_error());
+		
+			
+			$result = $pubnub->publish()
+              ->channel("conversations:".$conversation_id."")
+              ->message($result)
+              ->sync();
+ 
+			print_r($result);
+			echo($result);
 		$last = mysql_insert_id();
 		//fetch a specific record
 			$query="SELECT CONCAT('[', better_result, ']') AS best_result FROM
@@ -170,14 +179,6 @@ if($_GET['type']=="users"){
 	) AS yet_more_json;";
 			$go=mysql_query($query) or die(mysql_error());
 			$result = mysql_result($go, 0);
-			echo($result);
-			
-			$result = $pubnub->publish()
-              ->channel("conversations:".$conversation_id."")
-              ->message($result)
-              ->sync();
- 
-			print_r($result);
 			echo($result);
 	} else {
 		//GET logic
